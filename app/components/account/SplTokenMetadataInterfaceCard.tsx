@@ -78,7 +78,7 @@ async function getTokenMetadata(connection: Connection, programId: PublicKey, me
     return null;
 }
 
-export function useTokenMetadata(mint: string) {
+export function useTokenMetadata(mint?: string) {
     const { connection } = useConnection();
 
     const mintInfo = useMintAccountInfo(mint);

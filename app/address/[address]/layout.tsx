@@ -135,6 +135,11 @@ const TABS_LOOKUP: { [id: string]: Tab[] } = {
             slug: 'spl-token-metadata-interface',
             title: 'SPL Token Metadata',
         },
+        {
+            path: 'mint-metadata-program-interface',
+            slug: 'mint-metadata-program-interface',
+            title: 'Metadata Program Interface',
+        },
     ],
     'spl-token:mint': [
         {
@@ -490,7 +495,8 @@ export type MoreTabs =
     | 'entries'
     | 'concurrent-merkle-tree'
     | 'program-interface'
-    | 'spl-token-metadata-interface';
+    | 'spl-token-metadata-interface'
+    | 'mint-metadata-program-interface';
 
 function MoreSection({ children, tabs }: { children: React.ReactNode; tabs: (JSX.Element | null)[] }) {
     return (
@@ -540,9 +546,8 @@ function getTabs(pubkey: PublicKey, account: Account): TabComponent[] {
     }
 
     // Add SPL Token Metadata Interface tab
-    console.log('Parsed data', parsedData);
     if (isT22NFT(parsedData)) {
-        tabs.push(TABS_LOOKUP['spl-token-metadata-interface'][0]);
+        tabs.push(...TABS_LOOKUP['spl-token-metadata-interface']);
     }
 
     // Add the key for Metaplex NFTs
